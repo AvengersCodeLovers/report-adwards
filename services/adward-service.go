@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/hieudt-2054/report-adwards/models"
+	"github.com/AvengersCodeLovers/report-adwards/models"
 )
 
 type AdwardService interface {

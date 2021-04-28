@@ -1,7 +1,7 @@
 package main
 
 import (
-	routes "github.com/hieudt-2054/report-adwards/routes"
+	routes "github.com/AvengersCodeLovers/report-adwards/routes"
 )
 
 func main() {

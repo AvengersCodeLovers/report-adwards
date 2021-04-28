@@ -3,14 +3,14 @@ package controllers
 import (
 	"net/http"
 
+	"github.com/AvengersCodeLovers/report-adwards/models"
+	"github.com/AvengersCodeLovers/report-adwards/services"
 	"github.com/gin-gonic/gin"
-	"github.com/hieudt-2054/report-adwards/models"
-	"github.com/hieudt-2054/report-adwards/services"
 )
 
 type AdwardController interface {
-	All(ctx *gin.Context)
-	Save(ctx *gin.Context)
+	Index(ctx *gin.Context)
+	Store(ctx *gin.Context)
 }
 
 type controller struct {
@@ -23,11 +23,11 @@ func New(service services.AdwardService) AdwardController {
 	}
 }
 
-func (c *controller) All(ctx *gin.Context) {
+func (c *controller) Index(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, c.service.All())
 }
 
-func (c *controller) Save(ctx *gin.Context) {
+func (c *controller) Store(ctx *gin.Context) {
 	var adward models.Adward
 	ctx.ShouldBindJSON(&adward)
 	c.service.Save(adward)
