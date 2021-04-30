@@ -1,14 +1,19 @@
-name: 'Issue Link'
+name: Pull Request Lint
+
 on:
   pull_request:
-    types: [opened]
+    types: ['opened', 'edited', 'reopened', 'synchronize']
 
 jobs:
-  issue-link:
+  title:
+    name: ticket check
     runs-on: ubuntu-latest
+
     steps:
-      - uses: tkt-actions/add-issue-links@v1.4.0
+      - name: Check for ticket
+        uses: neofinancial/ticket-check-action@v1.0.0
         with:
-          repo-token: '${{ secrets.GITHUB_TOKEN }}'
-          branch-prefix: 'issue-'
-          resolve: 'true'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ticketPrefix: '#'
+          titleRegex: '^issue(\d+)'
+          bodyRegex: 'issue(\d+)'

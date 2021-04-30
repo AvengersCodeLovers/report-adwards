@@ -10,6 +10,27 @@
 
 Report Adwards - Store all adwards your group
 
+## Guideline
+
+- Copy `.env.example` to `.env` and edit .env file
+
+```sh
+cp .env.example .env
+```
+
+- Install dependencies & running application
+
+```sh
+go get
+go run .
+```
+
+- Check application is running
+
+```sh
+curl http://localhost:{$PORT}/api/v1/healthcheck
+```
+
 ## Built With
 
 - [Go 1.16.3]()
