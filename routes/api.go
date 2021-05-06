@@ -1,13 +1,13 @@
 package routes
 
 import (
-	"log"
 	"net/http"
 	"os"
 
 	controllers "github.com/AvengersCodeLovers/report-adwards/controllers"
 	services "github.com/AvengersCodeLovers/report-adwards/services"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -18,7 +18,9 @@ var (
 func SetupRouter() *gin.Engine {
 	routes := gin.Default()
 	gin.SetMode(os.Getenv("APP_ENV"))
-	log.Printf("Application running in : %v", gin.Mode())
+
+	logrus.Infof("Application running in port: %s", os.Getenv("APP_PORT"))
+
 	v1 := routes.Group("/api/v1")
 	{
 		v1.GET("adward", adwardController.Index)
