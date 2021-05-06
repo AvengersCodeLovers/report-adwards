@@ -2,6 +2,7 @@ package routes
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/AvengersCodeLovers/report-adwards/middleware"
 	"github.com/AvengersCodeLovers/report-adwards/util"
@@ -20,6 +21,8 @@ var (
 func SetupRouter() *gin.Engine {
 	routes := gin.New()
 	routes.Use(middleware.RequestLogMiddleware())
+	allowKeepRequestId, _ := strconv.ParseBool(util.GetEnv("REQUEST_ID", "false"))
+	routes.Use(middleware.RequestID(allowKeepRequestId))
 	routes.Use(gin.Recovery())
 
 	gin.SetMode(util.GetEnv("APP_ENV", "debug"))
