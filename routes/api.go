@@ -36,7 +36,7 @@ func SetupRouter() *gin.Engine {
 }
 
 func healthCheck(ctx *gin.Context) {
-	ctx.JSON(http.StatusInternalServerError, gin.H{
+	ctx.JSON(http.StatusOK, gin.H{
 		"message": "OK",
 	})
 }
