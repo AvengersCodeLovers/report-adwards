@@ -2,7 +2,9 @@ package routes
 
 import (
 	"net/http"
-	"os"
+
+	"github.com/AvengersCodeLovers/report-adwards/middleware"
+	"github.com/AvengersCodeLovers/report-adwards/util"
 
 	controllers "github.com/AvengersCodeLovers/report-adwards/controllers"
 	services "github.com/AvengersCodeLovers/report-adwards/services"
@@ -16,10 +18,12 @@ var (
 )
 
 func SetupRouter() *gin.Engine {
-	routes := gin.Default()
-	gin.SetMode(os.Getenv("APP_ENV"))
+	routes := gin.New()
+	routes.Use(middleware.RequestLogMiddleware())
+	routes.Use(gin.Recovery())
 
-	logrus.Infof("Application running in port: %s", os.Getenv("APP_PORT"))
+	gin.SetMode(util.GetEnv("APP_ENV", "debug"))
+	logrus.Infof("Application running in port: %s", util.GetEnv("APP_PORT", "8888"))
 
 	v1 := routes.Group("/api/v1")
 	{
