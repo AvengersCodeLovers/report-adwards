@@ -1,0 +1,10 @@
+Go Module: go.mod
+API: routes/api.go
+Models: models/**/*
+Controllers: controllers/**/*
+Services: services/**/*
+Middleware: middleware/**/*
+Unit Test: tests/**/*
+Github Action: .github/**/*
+Docker: .docker/**/*
+Documentation: README.md
